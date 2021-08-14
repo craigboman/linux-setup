@@ -45,7 +45,6 @@ packages_to_install=(
     code
     composer
     conky
-    dmenua
     docker
     docker-compose
     fail2ban
@@ -189,6 +188,9 @@ read -p "Enter git user.name" -n 1 username
 git config --global user.name $username
 read -p "Enter git user.email" -n 1 email
 git config --global user.email $email
+
+echo "${BOLD}Setting up pip ${RESET}"
+pip install pipenv poetry cookiecutter
 
 
 
