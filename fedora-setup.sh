@@ -40,31 +40,58 @@ packages_to_remove=(
 )
 
 packages_to_install=(
-    stow
-    ffmpeg
-    mpv
-    mediainfo
-    syncthing
-    libva-intel-driver
-    xclip
     chromium
     chromium-libs-media-freeworld
-    zathura
-    zathura-pdf-mupdf
-    zathura-bash-completion
+    code
+    composer
+    conky
+    dmenua
+    docker
+    docker-compose
+    fail2ban
+    feh
+    ffmpeg
+    filezilla
+    geany
+    gh
+    git
+    i3
+    i3-status
+    i3lock
+    libva-intel-driver
+    mpv
+    mediainfo
     lshw
     java-1.8.0-openjdk
     jack-audio-connection-kit
-    tldr
-    gh
-    code
     nodejs
-    docker
-    docker-compose
-    composer
+    obs
+    pgadmin
+    redshift
+    syncthing
     ShellCheck
+    stow
+    tldr
+    tripwire
+    ufw
+    vlc
+    wireshark
+    xbacklight
+    xclip
+    zathura
+    zathura-pdf-mupdf
+    zathura-bash-completion
     zeal
     )
+
+packages to download=(
+    dbeaver
+    https://vault.bitwarden.com/download/?app=desktop&platform=linux&variant=rpm
+    https://www.expressvpn.com/setup#linux
+    https://dist.ipfs.io/go-ipfs/v0.9.0/go-ipfs_v0.9.0_linux-amd64.tar.gz
+    https://go.skype.com/skypeforlinux-64.rpm
+    https://zoom.us/client/latest/zoom_x86_64.rpm
+)
 
 
 
@@ -76,8 +103,6 @@ cat <<EOL
 ${BOLD}Packages to install${RESET}
 ${BOLD}-------------------${RESET}
 DNF packages: ${GREEN}${packages_to_install[*]}${RESET}
-Flathub packages: ${GREEN}${flathub_packages_to_install[*]}${RESET}
-Composer packages: ${GREEN}${composer_packages_to_install[*]}${RESET}
 Node packages: ${GREEN}${node_global_packages_to_install[*]}${RESET}
 ${BOLD}Packages to remove${RESET}
 ${BOLD}------------------${RESET}
