@@ -94,8 +94,6 @@ packages_to_download=(
 )
 
 
-
-
 #==============================================================================
 # display user settings
 #==============================================================================
@@ -134,10 +132,10 @@ esac
 # dnf -y remove "${packages_to_remove[@]}"
 
 echo "${BOLD}Updating Fedora...${RESET}"
-dnf -y --refresh upgrade
+sudo dnf -y --refresh upgrade
 
 echo "${BOLD}Installing packages...${RESET}"
-dnf -y install "${packages_to_install[@]}"
+sudo dnf -y install "${packages_to_install[@]}"
 
 echo "${BOLD}Downloading tars...${RESET}"
 cd ~/Downloads && wget "${packages_to_download[@]}"
@@ -150,7 +148,47 @@ sudo bash install.sh
 cd ~/Downloads
 rm -rf go-ipfs-*
 
+echo "${BOLD}Installing Zoom ${RESET}"
+cd ~/Downloads
+sudo dnf localinstall zoom_x86_64.rpm
+rm zoom_x86_64.rpm
 
+echo "${BOLD}Setting up ufw ${RESET}"
+sudo ufw enable
+sudo ufw deny 1:21/udp
+sudo ufw deny 23:52/tcp
+sudo ufw deny 23:52/udp
+sudo ufw deny 54:79/tcp
+sudo ufw deny 54:79/udp
+sudo ufw deny 81:442/tcp
+sudo ufw deny 81:442/udp
+sudo ufw deny 444:65535/tcp
+sudo ufw deny 444:65535/udp
+Sudo ufw limit 22/tcp
+Sudo ufw limit 22/udp
+sudo ufw deny rpcbind
+sudo systemctl enable ufw
+
+echo "${BOLD}Setting up fail2ban ${RESET}"
+sudo systemctl enable fail2ban
+sudo systemctl start fail2ban
+sudo cat << EOF > /etc/fail2ban/jail.local
+[sshd]
+enabled = true
+port = 22
+filter = sshd
+logpath = /var/log/auth.log
+maxretry = 3
+EOF
+sudo systemctl restart fail2ban
+sudo fail2ban-client set sshd unbanip IP
+
+echo "${BOLD}Setting up git ${RESET}"
+clear
+read -p "Enter git user.name" -n 1 username
+git config --global user.name $username
+read -p "Enter git user.email" -n 1 email
+git config --global user.email $email
 
 
 
