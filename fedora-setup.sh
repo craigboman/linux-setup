@@ -84,10 +84,10 @@ packages_to_install=(
     zeal
     )
 
-packages to download=(
-    dbeaver
+packages_to_download=(
+    https://dbeaver.io/files/dbeaver-ce-latest-stable.x86_64.rpm
     https://vault.bitwarden.com/download/?app=desktop&platform=linux&variant=rpm
-    https://www.expressvpn.com/setup#linux
+    https://www.expressvpn.works/clients/linux/expressvpn-3.9.0.75-1.x86_64.rpm
     https://dist.ipfs.io/go-ipfs/v0.9.0/go-ipfs_v0.9.0_linux-amd64.tar.gz
     https://go.skype.com/skypeforlinux-64.rpm
     https://zoom.us/client/latest/zoom_x86_64.rpm
@@ -130,8 +130,8 @@ esac
 #==============================================================================
 # install packages
 #==============================================================================
-echo "${BOLD}Removing unwanted programs...${RESET}"
-dnf -y remove "${packages_to_remove[@]}"
+# echo "${BOLD}Removing unwanted programs...${RESET}"
+# dnf -y remove "${packages_to_remove[@]}"
 
 echo "${BOLD}Updating Fedora...${RESET}"
 dnf -y --refresh upgrade
@@ -139,6 +139,8 @@ dnf -y --refresh upgrade
 echo "${BOLD}Installing packages...${RESET}"
 dnf -y install "${packages_to_install[@]}"
 
+echo "${BOLD}Downloading tars...${RESET}"
+wget "${packages_to_download[@]}"
 
 
 
