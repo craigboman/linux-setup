@@ -140,7 +140,17 @@ echo "${BOLD}Installing packages...${RESET}"
 dnf -y install "${packages_to_install[@]}"
 
 echo "${BOLD}Downloading tars...${RESET}"
-wget "${packages_to_download[@]}"
+cd ~/Downloads && wget "${packages_to_download[@]}"
+
+echo "${BOLD}Installing IPFS ${RESET}"
+cd ~/Downloads
+tar -xvzf go-ipfs_v0.9.0_linux-amd64.tar.gz
+cd go-ipfs
+sudo bash install.sh
+cd ~/Downloads
+rm -rf go-ipfs-*
+
+
 
 
 
