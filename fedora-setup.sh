@@ -190,13 +190,12 @@ read -p "Enter git user.email" -n 1 email
 git config --global user.email $email
 
 echo "${BOLD}Setting up pip ${RESET}"
-pip install pipenv poetry cookiecutter
+pip install pipenv poetry cookiecutter youtube-dl tldr
 
 
 
 =============================================================================
 Congratulations, everything is installed!
-pip3 install --user youtube-dl tldr
 Now use the setup script...
 =============================================================================
 EOL
